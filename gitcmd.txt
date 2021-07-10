@@ -1,0 +1,3 @@
+git push origin mybranch-hono
+git commit -am 'Remove navbar if user is not authenticated'
+git pull origin mybranch-hono
