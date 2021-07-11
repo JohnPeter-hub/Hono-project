@@ -1,5 +1,5 @@
 {% extends 'landing/base.html'%}
-
+{% load static %}
 {% block content %}
 <div class="container">
     <div class="row justify-content-center mt-5">
@@ -14,3 +14,7 @@
     </div>
 </div>
 {% endblock content %}
+
+{%block animation%}
+<script src="{% static 'landing/js/bg.js' %}"></script>
+{%endblock animation%}
