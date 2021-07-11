@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
-from .models import Post,Comment
+from .models import Post,Comment,UserProfile
 from .forms import PostForm,CommentForm
 from django.views.generic.edit import UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -98,3 +98,7 @@ class CommentDeleteView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+
+# class ProfileView(View):
+#     def get(self,request,pk, *args, **kwargs):
+#13.34
