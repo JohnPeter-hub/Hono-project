@@ -26,7 +26,7 @@ class UserProfile(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     picture = models.ImageField(upload_to='uploads/profile_pictures', default='uploads/profile_pictures/default.jpg', blank=True)
-    
+    followers = models.ManyToManyField(User,blank=True,related_name='followers')    
 
 
 @receiver(post_save, sender=User)
