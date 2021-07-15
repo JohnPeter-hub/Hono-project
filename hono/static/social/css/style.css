@@ -18,6 +18,9 @@
 
 .post-img{
     float: left;
-    margin-right: 1rem;
-    
+    margin-right: 1rem;  
+}
+
+.child-comment{
+    margin-left: 2rem;
 }
