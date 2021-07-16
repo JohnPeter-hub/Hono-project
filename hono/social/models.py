@@ -1,6 +1,7 @@
 import django
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.db.models.fields import related
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -58,3 +59,16 @@ def create_user_profile(sender,instance,created, **kwargs):
 
 def save_user_profile(sender,instance,created, **kwargs):
     instance.profile.save()
+
+
+class Notification(models.Model):
+    notification_type = models.IntegerField()
+    to_user = models.ForeignKey(User,related_name='notification_to',on_delete=models.CASCADE,null=True)
+    from_user = models.ForeignKey(User,related_name='notification_from',on_delete=models.CASCADE,null=True)
+    post = models.ForeignKey('Post',on_delete=models.CASCADE,related_name='+',blank=True,null=True)
+    comment = models.ForeignKey('Comment',on_delete=models.CASCADE,related_name='+',blank=True,null=True)
+    date = models.DateTimeField(default=timezone.now)
+    user_has_seen = models.BooleanField(default=False)
+
+
+    
