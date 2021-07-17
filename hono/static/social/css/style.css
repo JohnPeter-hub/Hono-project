@@ -1,3 +1,4 @@
+
 .edit-color{
     color: #333;
 }
@@ -19,6 +20,12 @@
 .post-img{
     float: left;
     margin-right: 1rem;  
+}
+
+.post-image{
+    
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .child-comment{
@@ -65,3 +72,4 @@
     transition: 0.3s;
     cursor: pointer;
 }
+
