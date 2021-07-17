@@ -30,7 +30,12 @@
               </a>
             {% endif %}
             </p>
-            <p>{{post.body}}</p>
+            <div class="position-relative">
+                {% if post.image %}
+                  <img src="{{post.image.url }}" class="post-image" alt="{{ post.author }}" style="height:100%; width:100%;"/>
+                {% endif %}
+                <p>{{post.body}}</p>
+              </div> 
             <div class="d-flex flex-row">
                 <form action="{%url 'like' post.pk%}" method="post">
                     {% csrf_token %}
