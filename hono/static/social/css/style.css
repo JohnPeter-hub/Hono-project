@@ -92,17 +92,28 @@
     font-size:1.5rem;
     text-align: center;
 }
-.sent-message{
+.sent-message p{
     background-color: #f3f3f3;
     border-radius: 30px;
     padding: 10px 25px;
-    width:25%;
-    float: right;
+    width:35%;
 }
-.received-message{
+.received-message p{
     background-color: rgb(1,196,255);
     color:#fff;
     border-radius: 30px;
     padding: 10px 25px;
-    width:25%;
+    width:35%;
+}
+.message-image{
+    border-radius: 10px;
+    max-width:35%;
+    height:auto;
+}
+.message-receiver-container{
+    margin-left: auto;
+    margin-right: 0;
+}
+.inbox-icon{
+    margin-right: 5px;
 }

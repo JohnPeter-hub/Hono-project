@@ -21,17 +21,33 @@
       {% endif %}
       {% for message in message_list %}
         <div class="row">
+            {% if message.sender_user == request.user %}
             <div class="col-md-12 my-1">
-                {% if message.sender_user == request.user %}
-                  <div class="sent-message my-3" >
-                      <p>{{message.body}}</p>
-                  </div>
-                {%elif message.receiver_user == request.user%}
-                    <div class="received-message my-3">
+                    {% if message.image %}
+                      <div>
+                          <img src="{{ message.image.url }}" class="message-image">
+                      </div>
+                    {% endif %}
+                    
+                      <div class="sent-message my-3" >
                         <p>{{message.body}}</p>
-                    </div>
-                {% endif %}
+                      </div>
+                    
             </div>
+                {%elif message.receiver_user == request.user%}
+                <div class="col-md-12 offset-7">
+                    {% if message.image %}
+                      <div class="message-receiver-container ms-auto">
+                          <img src="{{ message.image.url }}" class="message-image">
+                      </div>
+                    {% endif %}
+                    
+                      <div class="received-message my-3" >
+                        <p>{{message.body}}</p>
+                      </div>
+                
+                </div>
+                {% endif %}
         </div>
       {% endfor %}
       <div class="row">
@@ -39,7 +55,6 @@
               <form action="{% url 'create-message'  thread.pk %}" method="post" enctype="multipart/form-data" >
               {% csrf_token %}
               {{form | crispy}}
-
               <div class="d-grid gap-2 mt-3">
                   <button class="btn btn-light" type="submit">Send Message</button>
               </div>

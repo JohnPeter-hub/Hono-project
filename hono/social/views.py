@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
-from django.core.checks import messages
+# from django.core.checks import messages
 from django.dispatch.dispatcher import receiver
 from django.shortcuts import render,redirect
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy
 from django.views import View
-from .models import MessageModel, Notification, Post,Comment,UserProfile,ThreadModel
+from .models import MessageModel, Notification, Post,Comment,UserProfile,ThreadModel, Image
 from .forms import PostForm,CommentForm,ThreadForm,MessageForm
 from django.views.generic.edit import UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
 
 # Create your views here.
 
@@ -35,9 +36,15 @@ class PostListView(LoginRequiredMixin, View):
             author__profile__followers__in = [logged_in_user.id]
         ).order_by('-created_on')
         form = PostForm(request.POST, request.FILES)
+        files = request.FILES.getlist('image')
         if form.is_valid():
             new_post = form.save(commit=False)
             new_post.author = request.user
+            new_post.save()
+            for f in files:
+                img = Image(image=f)
+                img.save()
+                new_post.image.add(img)
             new_post.save()
         form = PostForm()
         context ={
@@ -341,8 +348,16 @@ class FollowNotification(View):
         profile  = UserProfile.objects.get(pk=profile_pk)
         notification.user_has_seen = True
         notification.save()
-
         return redirect('profile',pk=profile_pk)
+
+class ThreadNotification(View):
+    def get(self,request,notification_pk,object_pk,*args,**kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        thread  = ThreadModel.objects.get(pk=object_pk)
+        notification.user_has_seen = True
+        notification.save()
+        return redirect('thread',pk=object_pk)
+
 
 class RemoveNotification(View):
     def delete(self,request,notification_pk,*args,**kwargs):
@@ -354,7 +369,6 @@ class RemoveNotification(View):
 class ListThreads(View):
     def get(self,request,*args,**kwargs):
         threads = ThreadModel.objects.filter(Q(user=request.user)|Q(receiver=request.user))
-
         context= {
             'threads':threads
         }
@@ -389,6 +403,7 @@ class CreateThread(View):
 
                 return redirect('thread',pk=thread.pk)
         except:
+            messages.error(request,'Invalid username')
             return redirect('create-thread')
 
 class ThreadView(View):
@@ -406,20 +421,26 @@ class ThreadView(View):
 
 class CreateMessage(View):
     def post(self,request,pk,*args,**kwargs):
+        form = MessageForm(request.POST,request.FILES)
         thread = ThreadModel.objects.get(pk=pk)
         if thread.receiver == request.user:
             receiver = thread.user
         else:
             receiver = thread.receiver
         
-        message = MessageModel(
-            thread=thread,
-            sender_user=request.user,
-            receiver_user = receiver,
-            body=request.POST.get('message')
-        )
-        message.save()
+        if form.is_valid():
+            message=form.save(commit=False)
+            message.thread = thread
+            message.sender_user = request.user
+            message.receiver_user = receiver
+            message.save()
 
+        notification = Notification.objects.create(
+            notification_type = 4,
+            from_user=request.user,
+            to_user = receiver,
+            thread = thread
+        )
         return redirect('thread',pk=pk)
 
 
