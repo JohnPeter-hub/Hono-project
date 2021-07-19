@@ -20,7 +20,7 @@ class PostListView(LoginRequiredMixin, View):
         logged_in_user = request.user
         posts = Post.objects.filter(
             author__profile__followers__in = [logged_in_user.id]
-        ).order_by('-created_on')
+        )
 
         form = PostForm()
         shared_form = SharedForm
@@ -35,7 +35,7 @@ class PostListView(LoginRequiredMixin, View):
         logged_in_user = request.user
         posts = Post.objects.filter(
             author__profile__followers__in = [logged_in_user.id]
-        ).order_by('-created_on')
+        )
         form = PostForm(request.POST, request.FILES)
         files = request.FILES.getlist('image')
         shared_form = SharedForm
@@ -62,7 +62,7 @@ class PostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk, *args, **kwargs):
         post = Post.objects.get(pk=pk)
         form = CommentForm()
-        comments = Comment.objects.filter(post=post).order_by('-created_on')
+        comments = Comment.objects.filter(post=post)
         context = {
             'post':post,
             'form':form,
@@ -81,7 +81,7 @@ class PostDetailView(LoginRequiredMixin, View):
 
         notification = Notification.objects.create(notification_type=2,from_user=request.user,to_user=post.author,post=post)
 
-        comments = Comment.objects.filter(post=post).order_by('-created_on')
+        comments = Comment.objects.filter(post=post)
         context = {
             'post':post,
             'form':form,
@@ -144,7 +144,7 @@ class ProfileView(View):
     def get(self,request,pk, *args, **kwargs):
         profile = UserProfile.objects.get(pk=pk)
         user = profile.user
-        posts = Post.objects.filter(author=user).order_by('-created_on')
+        posts = Post.objects.filter(author=user)
         followers = profile.followers.all()
         number_of_followers = len(followers)
 
@@ -318,14 +318,15 @@ class AddCommentDislike(LoginRequiredMixin,View):
 class SharedPostView(View):
     def post(self, request,pk, *args, **kwargs):
         original_post = Post.objects.get(pk=pk)
+        print(original_post.author)
         form = SharedForm(request.POST)
         if form.is_valid():
             new_post = Post(
                 shared_body = self.request.POST.get('body'),
                 body = original_post.body,
                 created_on = original_post.created_on,
+                author = original_post.author,
                 shared_user=request.user,
-                # author=original_post.author,
                 shared_on = timezone.now()
             )
             new_post.save()
