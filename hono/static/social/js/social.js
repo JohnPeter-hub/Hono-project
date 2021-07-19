@@ -8,6 +8,17 @@ function CommentReplyToggle(parent_id){
     }
 }
 
+function shareToggle(parent_id){
+    const row = document.getElementById(parent_id);
+
+    if (row.classList.contains('d-none')) {
+        row.classList.remove('d-none');
+    } else {
+        row.classList.add('d-none');
+    }
+}
+
+
 function showNotifications(){
     const container = document.getElementById('notification-container');
 
@@ -53,3 +64,4 @@ function removeNotification(removeNotificationURL, redirectURL){
     xmlhttp.setRequestHeader("X-CSRFToken", csrftoken);
     xmlhttp.send();
 }
+

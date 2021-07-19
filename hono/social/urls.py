@@ -1,6 +1,6 @@
 from collections import namedtuple
 from django.urls import path
-from .views import ListFollowers, PostListView,PostDetailView,PostEditView,PostDeleteView,CommentDeleteView,ProfileView,ProfileEditView,AddFollower,RemoveFollower,AddLike,DisLike,UserSearch, ListFollowers, AddCommentLike, AddCommentDislike, CommentReplyView,PostNotification,FollowNotification, RemoveNotification,CreateThread,ListThreads,ThreadView,CreateMessage,ThreadNotification
+from .views import ListFollowers, PostListView,PostDetailView,PostEditView,PostDeleteView,CommentDeleteView,ProfileView,ProfileEditView,AddFollower,RemoveFollower,AddLike,DisLike,UserSearch, ListFollowers, AddCommentLike, AddCommentDislike, CommentReplyView,PostNotification,FollowNotification, RemoveNotification,CreateThread,ListThreads,ThreadView,CreateMessage,ThreadNotification,SharedPostView
 
 urlpatterns = [
     path('',PostListView.as_view(), name="post-list"),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('post/<int:post_pk>/comment/<int:pk>/reply', CommentReplyView.as_view(), name='comment-reply'),
     path('post/<int:pk>/like',AddLike.as_view(),name='like'),
     path('post/<int:pk>/dislike',DisLike.as_view(),name='dislike'),
+    path('post/<int:pk>/share/',SharedPostView.as_view(),name='shared-post'),
     path('profile/<int:pk>/',ProfileView.as_view(),name='profile'),
     path('profile/edit/<int:pk>',ProfileEditView.as_view(),name='profile-edit'),
     path('profile/<int:pk>/followers/', ListFollowers.as_view(), name='list-followers'),
