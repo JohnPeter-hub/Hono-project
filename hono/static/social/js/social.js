@@ -72,9 +72,9 @@ function formatTags(){
         
         let words = bodyText.split(' ');
         for (j=0;j<words.length;j++){
-            if(words[j][0]=='#'){
-                let replacedText = words.toString().replace(`${words[j]}`,`<a href="/social/explore?query=${words[j].substring(1)}">${words[j]}</a>`);
-                replacedText = replacedText.toString().replace(/,/g, ' ');
+            if(words[j][0]==='#'){
+                console.log(words[j])
+                let replacedText = bodyText.replace(words[j],` <a href="/social/explore?query=${words[j].substring(1)}">${words[j]}</a>`);
                 elements[i].innerHTML = replacedText 
                 console.log(replacedText)
             }
