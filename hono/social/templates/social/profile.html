@@ -85,7 +85,11 @@
                     {% endfor %}
                 </div>
               {% endif %}
-              <p>{{post.body}}</p>
+              <div class="body">
+                 <p>{{post.body}}</p>
+              </div>
+              <a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a>
+
               <div class="d-flex flex-row">
                 <form action="{%url 'like' post.pk%}" method="post">
                     {% csrf_token %}

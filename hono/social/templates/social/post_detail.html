@@ -34,18 +34,13 @@
                     {% for img in post.image.all %}
                         <div class="col-md-6 col-xs-12">
                             <img src="{{ img.image.url }}" class="post-image" style="height:100%; width:100%;">
-                        </div>
-                      
+                        </div>                   
                     {% endfor %}
                 </div>
-              {% endif %}
-      
-            <!-- <div class="position-relative">
-                {% if post.image %}
-                  <img src="{{post.image.url }}" class="post-image" alt="{{ post.author }}" style="height:100%; width:100%;"/>
-                {% endif %}
-                <p>{{post.body}}</p>
-              </div>  -->
+              {% endif %} 
+              <div class="body">
+               <p>{{post.body}}</p>
+              </div>
             <div class="d-flex flex-row">
                 <form action="{%url 'like' post.pk%}" method="post">
                     {% csrf_token %}

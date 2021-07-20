@@ -49,6 +49,8 @@ class PostListView(LoginRequiredMixin, View):
                 img.save()
                 new_post.image.add(img)
             new_post.save()
+            new_post.create_tags()
+            
         form = PostForm()
         context ={
             'post_list': posts,
@@ -78,6 +80,9 @@ class PostDetailView(LoginRequiredMixin, View):
             new_comment.author = request.user
             new_comment.post = post
             new_comment.save()
+            
+            new_comment.create_tags()
+
 
         notification = Notification.objects.create(notification_type=2,from_user=request.user,to_user=post.author,post=post)
 
