@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Comment,MessageModel
+from .models import Post,Comment,MessageModel, Tag
 
 class PostForm(forms.ModelForm):
     body = forms.CharField(
@@ -51,3 +51,11 @@ class SharedForm(forms.Form):
         })
     )
     
+
+class ExploreForm(forms.Form):
+    query = forms.CharField(
+        label="",
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Explore Tags'
+        })
+    )
