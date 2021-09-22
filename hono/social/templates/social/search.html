@@ -22,7 +22,7 @@
               {% if profile.location %}
                 <p>{{profile.location}}</p>
               {% endif %}
-              <p>Followers: {{profile.followers.all.count}}</p>
+              <p>Followers: {{profile.followers.all.count|add:-1 }}</p>
 
           </div>
       </div>

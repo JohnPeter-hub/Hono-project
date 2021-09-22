@@ -151,7 +151,7 @@ class ProfileView(View):
         user = profile.user
         posts = Post.objects.filter(author=user)
         followers = profile.followers.all()
-        number_of_followers = len(followers)
+        number_of_followers = len(followers)-1
 
         is_following = False
         for follower in followers :
@@ -348,6 +348,7 @@ class UserSearch(View):
         profile_list = UserProfile.objects.filter(
             Q(user__username__startswith=query)
         )
+       
         context ={
             'profile_list': profile_list,
         }
