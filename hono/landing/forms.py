@@ -19,3 +19,5 @@ class AccountSignupForm(SignupForm):
         user.last_name = self.cleaned_data['last_name']
         user.save()
         return user
+    
+    
