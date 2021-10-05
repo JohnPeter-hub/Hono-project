@@ -45,8 +45,8 @@ $('body').Geometryangle({
       // Position of light source.
       zOffset: 100,
     
-      ambient: 'rgba(255,0,102, 1)',
-      diffuse: 'rgba(255,136,0, 1)',
+      ambient: 'rgba(255,0,102, 1)', //reddish pink
+      diffuse: 'rgba(255,136,0, 1)', //orange
       speed: 0.010,
       gravity: 1200,
     

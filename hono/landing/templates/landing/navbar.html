@@ -2,12 +2,12 @@
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" 
+      
       {% if user.is_authenticated %}
-        href="{% url 'post-list' %}"
-      {%else%}
-        href="{% url 'index' %}"
-      {%endif%}>hono</a>
+      <a class="navbar-brand" href="{% url 'post-list' %}">
+        hono
+     </a>
+      {% endif %}
       
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,10 +16,12 @@
         <ul class="navbar-nav">
           
         </ul>
+      {% if user.is_authenticated %}
         <li style="list-style: none;">
           <a href="{% url 'explore' %}" class="inbox-icon"><i class="far fa-compass"></i></a>
         </li>
-        
+      {%endif%}
+      
       </div>
 
       {% if user.is_authenticated %}

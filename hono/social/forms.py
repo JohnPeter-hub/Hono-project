@@ -5,8 +5,9 @@ class PostForm(forms.ModelForm):
     body = forms.CharField(
         label='',
         widget=forms.Textarea(attrs={
-            'rows': '3',
-            'placeholder': 'Say something!'
+            'rows': '2',
+            'cols': '25',
+            'placeholder': 'Caption'
         })
     )
     image = forms.ImageField(

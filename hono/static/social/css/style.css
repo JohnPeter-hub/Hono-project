@@ -1,3 +1,14 @@
+.post-list-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.newpost{
+    height: 30%;
+    /* position: fixed; */
+}
+
 
 .edit-color{
     color: #333;
@@ -15,6 +26,7 @@
 
 .post-text{
     padding-top: 0.5rem;
+    color: black;
 }
 
 .post-img{
