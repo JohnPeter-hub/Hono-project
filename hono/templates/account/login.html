@@ -48,21 +48,48 @@ background-size: contain;">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-5 ">
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Welcome back!</p>
+              <h2 class="fw-bold mb-2 text-uppercase text-center">Login</h2>
+              <p class="text-white-50 mb-5 text-center">Welcome back!</p>
 
               <form class="login" method="POST" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a><br>
-                <button class="primaryAction btn btn-primary btn-group mt-1" type="submit" style="width: 75%; padding-left: 30%;">{% trans "Sign In" %}</button>
+                 {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                      {{ hidden }}
+                    {% endfor %} 
+                    {% for field in form.visible_fields %}          
+                      <label class="text-left" for="{{ field.id_for_label }}">{{ field.label}}</label>
+                      {% if field.label == "Remember Me" %}
+                        {{ field|add_class:'input-group-text' }}
+                      {%else%}
+                        {{ field|add_class:'form-control' }}
+                      {% endif %}                     
+                      {% if form.errors %}
+                          {% for field in form %}
+                              {% for error in field.errors %}
+                                  <div class="alert alert-error">
+                                      <strong>{{ error|escape }}</strong>
+                                  </div>
+                              {% endfor %}
+                          {% endfor %}
+                          {% for error in form.non_field_errors %}
+                              <div class="alert alert-error">
+                                  <strong>{{ error|escape }}</strong>
+                              </div>
+                          {% endfor %}
+                      {% endif %}               
+              {% endfor %}
+    <div class="text-center">
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      <button class="primaryAction btn btn-primary text-center" type="submit">{% trans "Sign In" %}</button>
+    </div>
+                
               </form>
               
 
@@ -75,7 +102,7 @@ background-size: contain;">
             </div>
 
             <div>
-              <p class="mb-0">Don't have an account? <a href="{{ signup_url }}" class="text-white-50 fw-bold">Sign Up</a></p>
+              <p class="mb-0 text-center">Don't have an account? <a href="{{ signup_url }}" class="text-white-50 fw-bold">Sign Up</a></p>
             </div>
 
           </div>

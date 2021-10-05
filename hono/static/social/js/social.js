@@ -1,3 +1,4 @@
+
 function CommentReplyToggle(parent_id){
     const row = document.getElementById(parent_id);
 
@@ -21,7 +22,6 @@ function shareToggle(parent_id){
 
 function showNotifications(){
     const container = document.getElementById('notification-container');
-
     if (container.classList.contains('d-none')) {
         container.classList.remove('d-none');
     } else {

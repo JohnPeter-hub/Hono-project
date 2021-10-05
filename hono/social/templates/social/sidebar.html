@@ -13,7 +13,9 @@
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{% static 'social/css/social-sidebar.css' %}">
-        <link rel="stylesheet" href="{% static 'social/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'social/css/style.css' %}">
+    <script src="https://kit.fontawesome.com/1d71f92e0a.js" crossorigin="anonymous"></script>
+
 
   </head>
 
@@ -28,9 +30,11 @@
         /* background-repeat: no-repeat; */
         background-size: cover;
         background-repeat: repeat-y;
+        /* z-index: 1000; */
     }
   </style>
   <body>
+    
 		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active position-fixed">
@@ -42,12 +46,15 @@
           <li>
               <a href="{% url 'profile' request.user.profile.pk%}"><span class="fa fa-user"></span> Profile</a>
           </li>
+          <li>{%show_notifications%}<a>Notifications</a></li>
+          
           <li>
             <a href="{% url 'post-list' %}#top"><span class="fa fa-plus"></span> Post</a>
         </li>
           <li>
             <a href="{% url 'explore' %}"><span class="fa fa-compass"></span> Explore</a>
           </li>
+          
           <li>
             <a href="{%url 'inbox' %}"><span class="fa fa-paper-plane"></span> Messenger</a>
           </li>
@@ -89,9 +96,9 @@
                   </button>
                 </div>
             </form>
-            <div class="nav-item">
+            <!-- <div class="nav-item">
               {%show_notifications%}
-            </div>
+            </div> -->
             {% endif %}
               </ul>
               
@@ -100,11 +107,11 @@
           
         </nav>
 
-        <!-- Actual Content begin here -->
+      <!-- Actual Content begin here -->
         
-        {% block content %}
+    {% block content %}
 
-        {% endblock content %}
+    {% endblock content %}  
         
         
 
@@ -118,5 +125,7 @@
     <script src="{% static 'social/js/popper.js' %}"></script>
     <script src="{% static 'social/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'social/js/main.js'}"></script>
+    <script type="text/javascript" src="{% static 'social/js/social.js' %}"></script>
+
   </body>
 </html>

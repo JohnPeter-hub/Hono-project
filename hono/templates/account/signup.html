@@ -15,12 +15,12 @@ background-size: contain;">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body">
 
-            <div class="mb-md-5 mt-md-4 pb-5">
+            <div>
 
-              <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
-              <p class="text-white-50 mb-5">Create an account for free!</p>
+              <h2 class="fw-bold mb-2 text-uppercase text-center">Register</h2>
+              <p class="text-white-50 mb-2 text-center">Create an account for free!</p>
 
               <form class="signup ps-5" id="signup_form" method="post" action="{% url 'account_signup' %}" novalidate>
                 {% csrf_token %}
@@ -29,8 +29,8 @@ background-size: contain;">
                   {% endfor %}
               
                   {% for field in form.visible_fields %}
-                    <div class="mb-3">
-                        <!-- <label for="{{ field.id_for_label }}">{{ field.label}}</label> -->
+                    <div class="mb-2">
+                        <!-- <label class="text-left" for="{{ field.id_for_label }}">{{ field.label}}</label> -->
                       {{ field|add_class:'form-control' }}
                       {% for error in field.errors %}
                         <span class="help-block">{{ error }}</span>
@@ -40,14 +40,11 @@ background-size: contain;">
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button type="submit" class="btn btn-primary">{% trans "Sign Up to explore" %} &raquo;</button>
-                <p class="mb-0">Already have an account? <a href="{{ login_url }}" class="text-white-50 fw-bold">Sign In</a></p>
+                <button type="submit" class="btn btn-primary text-center">{% trans "Sign Up to explore" %} &raquo;</button>
+                <p class="mb-0 text-center">Already have an account? <a href="{{ login_url }}" class="text-white-50 fw-bold">Sign In</a></p>
               
               </form>
             </div>
-
-            
-
           </div>
         </div>
       </div>
