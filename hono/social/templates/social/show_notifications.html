@@ -39,7 +39,7 @@
                 {%elif notification.thread %}
                     <div class="dropdown-item-parent">
                         <a href="{% url 'thread-notification' notification.pk notification.thread.pk %}">
-                            @{{notification.from_user}} sent yo a message
+                            @{{notification.from_user}} sent you a message
                         </a>
                         <span class="dropdowm-item-close" onclick="removeNotification(`{% url 'notification-delete' notification.pk %}`, `{{request.path}}`)">&times;</span>
                     </div>

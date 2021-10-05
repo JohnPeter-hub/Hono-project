@@ -6,4 +6,4 @@ class SocialConfig(AppConfig):
     name = 'social'
 
     def ready(self):
-        import social.signal
+        import social.signals

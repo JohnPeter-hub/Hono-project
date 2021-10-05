@@ -1,3 +1,4 @@
+from typing import ContextManager
 from django.contrib.auth.models import User
 # from django.core.checks import messagesf
 from django.utils import timezone
@@ -151,7 +152,7 @@ class ProfileView(View):
         user = profile.user
         posts = Post.objects.filter(author=user)
         followers = profile.followers.all()
-        number_of_followers = len(followers)-1
+        number_of_followers = len(followers)
 
         is_following = False
         for follower in followers :
@@ -348,7 +349,6 @@ class UserSearch(View):
         profile_list = UserProfile.objects.filter(
             Q(user__username__startswith=query)
         )
-       
         context ={
             'profile_list': profile_list,
         }
@@ -519,3 +519,4 @@ class Explore(View):
             
             return HttpResponseRedirect(f'/social/explore?query={{query}}')
         return HttpResponseRedirect('/social/explore')
+

@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
-    
 ]
 
 SITE_ID = 1
@@ -155,4 +154,11 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'post-list'
 ACCOUNT_EMAIL_REQUIRED = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'helpdesk.hono@gmail.com'
+EMAIL_HOST_PASSWORD = 'qgaetclwbmpvfuaq'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAUL_FROM_EMAIL = 'Hono Helpdesk <noreply@honoproject.com>'
