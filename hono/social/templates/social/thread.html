@@ -2,9 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <div class="container">
+<style>
+  .margin-left{
+    margin-left: 10%;
+  }
+</style>
+  <div class="container margin-left">
       <div class="row">
-          <div class="card col-md-12 mt-5 p-3 shadow-sm">
+          <div class="card col-md-12 mt-5 mb-5 p-3 shadow-sm">
               {% if thread.receiver == request.user %}
                 <h5>@{{thread.user}}</h5>
               {%else%}
