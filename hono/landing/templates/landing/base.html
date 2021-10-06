@@ -20,8 +20,10 @@
     <title>Hono</title>
    
   </head>
-  <body style="height: 100%;">
-    {% include 'landing/navbar.html'%}
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'landing/navbar.html'%}
+    {% endif %}
    {% block content %}
 
    {% endblock content %}
