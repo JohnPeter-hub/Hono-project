@@ -82,7 +82,7 @@
         <div class="navbar-header">
           
           {% if user.is_authenticated %}
-          <a class="navbar-brand" href="{% url 'post-list' %}">
+          <a class="navbar-brand " href="{% url 'post-list' %}">
             hono
           </a>
           {% endif %}
@@ -100,26 +100,28 @@
           <a href="{% url 'explore' %}" class="inbox-icon"><i class="far fa-compass"></i></a>
         </li> 
       </div>   
-      <form class="d-flex" action="{% url 'profile-search'%}" method="GET">
-        <div class="input-group">
-          <span class="input-group-text" id="basic-addon1">@</span>
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
-          <button class="remove-default-btn" type="submit">
-          <i class="fas fa-search"></i>
-          </button>
-        </div>
-    </form>
-    <div class="nav-item dropdown">
+      <div class="user-search">
+          <form class="d-flex" action="{% url 'profile-search'%}" method="GET">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">@</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
+              <button class="remove-default-btn" type="submit">
+              <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+      </div>
+    <!-- <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-dark " data-bs-toggle="dropdown" role="buton" aria-expanded="false"><i class="fas fa-user"></i></a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}">Profile</a></li>
           <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
         </ul>
-      </div>
+      </div> -->
 
-      <div class="nav-item inbox-icon-container">
+      <!-- <div class="nav-item inbox-icon-container">
         <a href="{%url 'inbox' %}" class="inbox-icon"><i class="far fa-paper-plane"></i></a>
-      </div>
+      </div> -->
 
       <div class="nav-item">
       {%show_notifications%}

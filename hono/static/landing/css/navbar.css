@@ -48,8 +48,8 @@
   font-size: 32px;
 }
 
-.navbar-primary.collapsed .dropdown-item {
-  /* display: none; */
+.user-search{
+    padding-right: 200px;
 }
 
 
