@@ -8330,3 +8330,15 @@
 .nav-trans{
     background-color: transparent !important;
 }
+.position-fixed{
+          position: fixed;
+          height: 100%;
+}
+body{
+  height: 100vh;
+  background: url("/static/social/images/main-bg.jpg");
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  background-repeat: repeat-y;
+  /* z-index: 1000; */
+}

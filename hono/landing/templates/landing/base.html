@@ -18,6 +18,7 @@
 
     <!-- <script src="https://kit.fontawesome.com/1d71f92e0a.js" crossorigin="anonymous"></script> -->
     <title>Hono</title>
+   
   </head>
   <body style="height: 100%;">
     {% include 'landing/navbar.html'%}
@@ -34,7 +35,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://salesportal.aptaracorp.com/PPDI/POC/js/geometry/geometryangle.js"></script>
     <script type="text/javascript" src="{% static 'social/js/social.js' %}"></script>
-
+    <script>
+      $('.btn-expand-collapse').click(function(e) {
+				$('.navbar-primary').toggleClass('collapsed');
+        
+      });
+    </script>
 
     {%block animation%}
 

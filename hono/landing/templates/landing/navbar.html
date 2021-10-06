@@ -1,5 +1,6 @@
 {% load custom_tags %}
-<div class="container">
+{% load static %}
+<!-- <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       
@@ -54,7 +55,98 @@
 
 
   </nav>
-</div>
+</div> -->
+<link rel="stylesheet" href="{% static 'landing/css/navbar.css'%}">
+<!-- <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Santhosh Vertical Nav Project</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-user navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Santhosh Giridara</a></li>
+            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
+        </div>/.nav-collapse 
+      </div>
+</nav> -->
+
+<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          
+          {% if user.is_authenticated %}
+          <a class="navbar-brand" href="{% url 'post-list' %}">
+            hono
+          </a>
+          {% endif %}
+        </div>
+          
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          
+        </ul>
+      {% if user.is_authenticated %}
+        <li style="list-style: none;">
+          <a href="{% url 'explore' %}" class="inbox-icon"><i class="far fa-compass"></i></a>
+        </li> 
+      </div>   
+      <form class="d-flex" action="{% url 'profile-search'%}" method="GET">
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
+          <button class="remove-default-btn" type="submit">
+          <i class="fas fa-search"></i>
+          </button>
+        </div>
+    </form>
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark " data-bs-toggle="dropdown" role="buton" aria-expanded="false"><i class="fas fa-user"></i></a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}">Profile</a></li>
+          <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-item inbox-icon-container">
+        <a href="{%url 'inbox' %}" class="inbox-icon"><i class="far fa-paper-plane"></i></a>
+      </div>
+
+      <div class="nav-item">
+      {%show_notifications%}
+      </div>
+     
+    </div>
+
+
+</nav>
+
+<nav class="navbar-primary  sidebar">
+  <a href="#" class="btn-expand-collapse"><i class="fas fa-minus-square"></i></a>
+  <ul class="navbar-primary-menu">
+    <li>
+      <a class="dropdown-item" href="{% url 'post-list' %}"><i class="fas fa-home icon"></i> Home</a>
+      <a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}"><i class="far fa-id-card"></i> Profile</a>
+      <div>
+        <a class="dropdown-item" href=""><i class="fas fa-bell px-1"></i> {%show_notifications%} Notification</a>
+      </div>
+      <a href="{% url 'post-list' %}" class="dropdown-item"><i class="fas fa-plus-square px-1"></i> Post</span></a>
+      <a href="{%url 'inbox' %}" class="inbox-icon dropdown-item"><i class="far fa-paper-plane"></i> Messages</a>
+      <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+    </li>
+  </ul>
+</nav>
+{%endif%}
+
 
 
 

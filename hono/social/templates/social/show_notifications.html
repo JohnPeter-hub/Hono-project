@@ -1,28 +1,12 @@
-<style>
-    .dropdown-content-custom{
-        background-color: rgba(0, 0, 0, 0.5);
-        font-size: medium;
-        border-radius: 5px;
-    }
-
-    .font-size-24{
-        font-size: 24px;
-    }
-
-    .font-color{
-        color: black;
-    }
-
-</style>
-<span class="dropdown" style="cursor: pointer; padding-top: 10px;">
-    <span class="fa fa-bell font-size-24" onclick="showNotifications()">
-        <span style="font-size: 10px;">{{notifications.count}}</span>
+<div class="dropdown">
+    <span class="badge bg-primary notification-badge" onclick="showNotifications()">
+        {{notifications.count}}
     </span>
-        <div class="dropdown-content d-none dropdown-content-custom" id="notification-container" style="z-index: 100;">
+        <div class="dropdown-content d-none" id="notification-container">
             {% for notification in notifications %}
                 {% if notification.post %}
                     {% if notification.notification_type == 1 %}
-                    <div class="dropdown-item-parent font-color">
+                    <div class="dropdown-item-parent">
                         <a href="{% url 'post-notification' notification.pk notification.post.pk %}">
                             @{{notification.from_user}} liked your post
                         </a>
@@ -55,7 +39,7 @@
                 {%elif notification.thread %}
                     <div class="dropdown-item-parent">
                         <a href="{% url 'thread-notification' notification.pk notification.thread.pk %}">
-                            @{{notification.from_user}} sent you a message
+                            @{{notification.from_user}} sent yo a message
                         </a>
                         <span class="dropdowm-item-close" onclick="removeNotification(`{% url 'notification-delete' notification.pk %}`, `{{request.path}}`)">&times;</span>
                     </div>
@@ -69,4 +53,4 @@
                 {% endif %}
             {% endfor %}
         </div>
-    </span>
+</div>
