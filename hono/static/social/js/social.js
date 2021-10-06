@@ -22,6 +22,7 @@ function shareToggle(parent_id){
 
 function showNotifications(){
     const container = document.getElementById('notification-container');
+    container.style = "z-index: 100;";
     if (container.classList.contains('d-none')) {
         container.classList.remove('d-none');
     } else {
