@@ -79,13 +79,14 @@
                       <div class="row">
                         {% for img in post.image.all %}
                             <!-- <div class="col-md-4 col-xs-12"> -->
-                            <div>
-                                <img src="{{ img.image.url }}" class="post-image" />
-                            </div>
+                                <div>
+                                    <img src="{{ img.image.url }}" class="post-image" />
+                                </div>
                             <br>
                         {% endfor %}
                       </div>
                     {% endif %}
+                    
                     <div class="body">
                         <p>{{ post.body }}</p>
                     </div>
