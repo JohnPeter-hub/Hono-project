@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Comment,MessageModel, Tag
+from .models import Post,Comment,MessageModel, Tag, UserProfile
 
 class PostForm(forms.ModelForm):
     body = forms.CharField(
