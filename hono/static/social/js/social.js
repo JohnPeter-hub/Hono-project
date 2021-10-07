@@ -24,9 +24,22 @@ function showNotifications(){
     const container = document.getElementById('notification-container');
     if (container.classList.contains('d-none')) {
         container.classList.remove('d-none');
+        add_nav_class();
+       
     } else {
         container.classList.add('d-none');
+        remove_nav_class();
     }
+}
+
+function add_nav_class(){
+     var element = document.getElementById('navbar-primary');
+     element.classList.add('navbar-primary-expand');
+}
+
+function remove_nav_class(){
+    var element = document.getElementById('navbar-primary');
+    element.classList.remove('navbar-primary-expand');
 }
 
 function getCookie(name) {

@@ -132,20 +132,39 @@
 
 </nav>
 
-<nav class="navbar-primary  sidebar">
-  <a href="#" class="btn-expand-collapse"><i class="fas fa-minus-square"></i></a>
+<nav class="navbar-primary sidebar" id="navbar-primary">
+  <a href="#" class="btn-expand-collapse icon-color"><i class="fas fa-minus-square"></i></a>
   <ul class="navbar-primary-menu">
-    <li>
+    <li class="sidebar-item">
       <a class="dropdown-item" href="{% url 'post-list' %}"><i class="fas fa-home icon"></i> Home</a>
+    </li>
+
+    <li class="sidebar-item">
       <a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}"><i class="far fa-id-card"></i> Profile</a>
-      <div>
-        <a class="dropdown-item" ><i class="fas fa-bell px-1"></i> {%show_notifications%} Notification</a>
+    </li class="dropdown-item">
+      
+    <li class="sidebar-item">
+      <div class="np dropdown-item">
+        <i class="fas fa-bell px-1"></i> {%show_notifications%} Notification
       </div>
+    </li>
+
+    <li class="sidebar-item">
       <a href="{% url 'post-list' %}" class="dropdown-item"><i class="fas fa-plus-square px-1"></i> Post</span></a>
+    </li>
+
+    <li class="sidebar-item">
       <a href="{%url 'inbox' %}" class="inbox-icon dropdown-item"><i class="far fa-paper-plane"></i> Messages</a>
+    </li>
+
+    <li class="sidebar-item">
        <a class="dropdown-item" href="{% url 'explore' %}"><i class="far fa-compass"></i> Explore</a>
+    </li>
+
+    <li class="sidebar-item">
       <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
     </li>
+      
   </ul>
 </nav>
 {%endif%}
