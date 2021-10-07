@@ -8317,7 +8317,9 @@
     min-height: 100vh;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
-    transition: all 0.3s; }
+    transition: all 0.3s;
+    /* z-index: -99; */
+   }
   
   .btn.btn-primary {
     background: #3e64ff;

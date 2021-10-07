@@ -1,4 +1,6 @@
 {% extends 'social/sidebar.html'%}
+{% load crispy_forms_tags %}
+
 
 
 
@@ -35,15 +37,14 @@
           {% if profile.bio %}
             <p>{{profile.bio}}</p>
           {% endif %}
-         <div class="mb-3">
-          <a href="{% url 'list-followers' profile.pk%}" class="post-link"><p>Followers: {{no_of_followers}}</p></a>
-          
+         <div class="mb-2">
+          <a href="{% url 'list-followers' profile.pk%}" class="post-link"><p>Followers: {{no_of_followers}}</p></a>         
         </div>
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
 
-    <div class="row justify-content-center mt-5">
-      <div class="card shadow col-md-8 col-sm-12 border-bottom px-5 py-3">
+    <!-- <div class="row justify-content-center mt-5"> -->
+      <!-- <div class="card shadow col-md-8 col-sm-12 border-bottom px-5 py-3"> -->
         {% if profile.location %}
             <p>Location: {{profile.location}}</p>
           {% endif %}
@@ -53,18 +54,39 @@
 
           {% if user == request.user %}
           {%else%}
+          <div class="py-2">
             {% if is_following %}
-            <form action="{% url 'remove-follower' profile.pk%}" method="post">
+            <form action="{% url 'remove-follower' profile.pk%} " method="post">
               {% csrf_token %}
               <button class="btn btn-outline-danger" type="submit">Unfollow</button>
             </form>
             {%else%}
-             <form action="{% url 'add-follower' profile.pk%}" method="post">
+             <form action="{% url 'add-follower' profile.pk%} " method="post">
               {% csrf_token %}
               <button class="btn btn-outline-success" type="submit">Follow</button>
             </form>
             {% endif %}
           {% endif %}
+
+
+          {% if not request.user == user %}
+          
+
+<!-- 
+           <form action="" method="post">
+              {% csrf_token %}
+              {{form|crispy}}
+              <div class="d-grid gap-2">
+                  <button class="btn btn-success mt-3" type="submit">Message</button>
+              </div>
+            </form> -->
+
+
+          {%endif%}
+
+
+
+        </div>
       </div>
     </div>
 

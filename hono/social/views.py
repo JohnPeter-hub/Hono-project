@@ -84,8 +84,8 @@ class PostDetailView(LoginRequiredMixin, View):
 
             new_comment.create_tags()
 
-
-        notification = Notification.objects.create(notification_type=2,from_user=request.user,to_user=post.author,post=post)
+        if request.user != post.author:
+            notification = Notification.objects.create(notification_type=2,from_user=request.user,to_user=post.author,post=post)
 
         comments = Comment.objects.filter(post=post)
         context = {
@@ -110,7 +110,8 @@ class CommentReplyView(LoginRequiredMixin, View):
             new_comment.parent = parent_comment
             new_comment.save()
 
-        notification = Notification.objects.create(notification_type=2,from_user=request.user,to_user=parent_comment.author,comment=new_comment)
+        if request.user != parent_comment.author:
+            notification = Notification.objects.create(notification_type=2,from_user=request.user,to_user=parent_comment.author,comment=new_comment)
         return redirect('post-detail', pk=post_pk)
 
 class PostEditView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
@@ -154,6 +155,8 @@ class ProfileView(View):
         followers = profile.followers.all()
         number_of_followers = len(followers)
 
+        # form = ThreadForm()
+
         is_following = False
         for follower in followers :
             if follower == request.user:
@@ -166,6 +169,7 @@ class ProfileView(View):
             'posts':posts,
             'no_of_followers':number_of_followers,
             'is_following':is_following,
+            # 'form':form,
         }
 
         return render(request,'social/profile.html',context)
@@ -187,7 +191,8 @@ class AddFollower(LoginRequiredMixin,View):
     def post(self,request,pk,*args,**kwargs):
         profile = UserProfile.objects.get(pk=pk)
         profile.followers.add(request.user)
-        notification = Notification.objects.create(notification_type=3,from_user=request.user,to_user=profile.user)
+        if request.user != profile.user:
+            notification = Notification.objects.create(notification_type=3,from_user=request.user,to_user=profile.user)
         return redirect('profile', pk=profile.pk)
 
 class RemoveFollower(LoginRequiredMixin,View):
@@ -220,7 +225,7 @@ class AddLike(LoginRequiredMixin,View):
         
         if not is_like:
             post.likes.add(request.user)
-
+        if request.user != post.author:
             notification = Notification.objects.create(notification_type=1,from_user=request.user,to_user=post.author,post=post)
         
         if is_like:
@@ -283,7 +288,8 @@ class AddCommentLike(LoginRequiredMixin,View):
         
         if not is_like:
             comment.likes.add(request.user)
-            notification = Notification.objects.create(notification_type=1,from_user=request.user,to_user=comment.author,comment=comment)
+            if request.user != comment.author:
+                notification = Notification.objects.create(notification_type=1,from_user=request.user,to_user=comment.author,comment=comment)
         
         if is_like:
             comment.likes.remove(request.user)
@@ -425,7 +431,7 @@ class CreateThread(View):
                 return redirect('thread', pk=thread.pk)
             elif ThreadModel.objects.filter(user=receiver,receiver=request.user).exists():
                 thread = ThreadModel.objects.filter(user=receiver,receiver=request.user)[0]
-                return redirect('thread', pk=thread.pk) 
+                return redirect('thread', pk=thread.pk)  
 
             if form.is_valid():
                 thread = ThreadModel(
@@ -467,8 +473,8 @@ class CreateMessage(View):
             message.sender_user = request.user
             message.receiver_user = receiver
             message.save()
-
-        notification = Notification.objects.create(
+            if request.user != receiver:
+                notification = Notification.objects.create(
             notification_type = 4,
             from_user=request.user,
             to_user = receiver,

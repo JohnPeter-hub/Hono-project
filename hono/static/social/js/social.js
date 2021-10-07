@@ -26,9 +26,11 @@ function showNotifications(){
     const sidebar = document.getElementById('sidebar');
     if (container.classList.contains('d-none')) { //notification container not visible
         container.classList.remove('d-none');   //notification container visible
-        content.classList.add('test');
+        content.style.zIndex = "-99";
+
     } else {
         container.classList.add('d-none');
+        content.style.removeProperty('zIndex');
 
 
     }
