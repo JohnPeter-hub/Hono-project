@@ -5,7 +5,8 @@
 
 <html lang="en">
   <head>
-  	<title></title>
+  	<title>Hono</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'hono_logo.png' %}"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -31,13 +32,14 @@
         background-size: cover;
         background-repeat: repeat-y;
         /* z-index: 1000; */
+        overflow-x: hidden;
     }
   </style>
   <body>
     
 		
 		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active position-fixed">
+			<nav id="sidebar" class="active position-fixed" style="background-color: #00030c;">
 				<h1><a href="{% url 'post-list' %}" class="logo">hono.</a></h1>
         <ul class="list-unstyled components mb-5">
           <li class="active">
@@ -63,7 +65,11 @@
           </li>
         </ul>
 
-        
+        <div class="footer">
+        	<p>
+					  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+					</p>
+        </div>
     	</nav>
 
         <!-- Page Content  -->
@@ -120,7 +126,7 @@
     <script src="{% static 'social/js/jquery.min.js' %}"></script>
     <script src="{% static 'social/js/popper.js' %}"></script>
     <script src="{% static 'social/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'social/js/main.js'}"></script>
+    <script src="{% static 'social/js/main.js'%}"></script>
     <script type="text/javascript" src="{% static 'social/js/social.js' %}"></script>
 
   </body>

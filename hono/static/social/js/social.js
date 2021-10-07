@@ -22,11 +22,15 @@ function shareToggle(parent_id){
 
 function showNotifications(){
     const container = document.getElementById('notification-container');
-    container.style = "z-index: 100;";
-    if (container.classList.contains('d-none')) {
-        container.classList.remove('d-none');
+    const content = document.getElementById('content');
+    const sidebar = document.getElementById('sidebar');
+    if (container.classList.contains('d-none')) { //notification container not visible
+        container.classList.remove('d-none');   //notification container visible
+        content.classList.add('test');
     } else {
         container.classList.add('d-none');
+
+
     }
 }
 
@@ -70,14 +74,16 @@ function formatTags(){
     const elements = document.getElementsByClassName('body')
     for (let i=0;i<elements.length;i++){
         let bodyText = elements[i].children[0].innerText;
+        console.log("Bodytext is "+bodyText);
         
         let words = bodyText.split(' ');
-        for (j=0;j<words.length;j++){
+        for (let j=0;j<words.length;j++){
             if(words[j][0]==='#'){
                 console.log(words[j])
                 let replacedText = bodyText.replace(words[j],` <a href="/social/explore?query=${words[j].substring(1)}">${words[j]}</a>`);
-                elements[i].innerHTML = replacedText 
-                console.log(replacedText)
+                elements[i].innerHTML = replacedText;
+                bodyText = replacedText; 
+                console.log("Replaced text is " + replacedText);
             }
         }
     }

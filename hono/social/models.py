@@ -23,6 +23,7 @@ class Post(models.Model):
 				tag = Tag.objects.filter(name=word[1:]).first()
 				if tag:
 					self.tags.add(tag.pk)
+
 				else:
 					tag = Tag(name=word[1:])
 					tag.save()

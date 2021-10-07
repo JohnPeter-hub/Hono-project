@@ -518,5 +518,6 @@ class Explore(View):
                 }
             
             return HttpResponseRedirect(f'/social/explore?query={{query}}')
+
         return HttpResponseRedirect('/social/explore')
 

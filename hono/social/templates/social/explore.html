@@ -2,9 +2,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<style>
-  
-</style>
+<head>
+<title>Explore</title>
+
+</head>
 <div class="container">
     <!-- <div class="row mt-5">
         <div class="col-md-5 col-sm-6">
@@ -22,7 +23,7 @@
                 <p class="mb-3">Explore tags to find new posts</p>
             {% endif %}
 
-            <form action="" method="post" class="mb-5">
+            <form action="" method="GET" class="mb-5">
                 {% csrf_token %}
                 {{ explore_form | crispy}}
             </form>

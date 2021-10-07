@@ -18,7 +18,7 @@
     <span class="fa fa-bell font-size-24" onclick="showNotifications()">
         <span style="font-size: 10px;">{{notifications.count}}</span>
     </span>
-        <div class="dropdown-content d-none dropdown-content-custom" id="notification-container" style="z-index: 100;">
+        <div class="dropdown-content d-none dropdown-content-custom" id="notification-container">
             {% for notification in notifications %}
                 {% if notification.post %}
                     {% if notification.notification_type == 1 %}
