@@ -186,6 +186,15 @@ class ProfileEditView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     def test_func(self):
         profile = self.get_object()
         return self.request.user ==profile.user
+    
+    def get_context_data(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        profile = UserProfile.objects.get(pk=pk)
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        return context
+    
+
 
 class AddFollower(LoginRequiredMixin,View):
     def post(self,request,pk,*args,**kwargs):
