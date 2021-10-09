@@ -5,8 +5,16 @@
 }
 
 .newpost{
-    height: 30%;
+    height: 10%;
     /* position: fixed; */
+    width: 95%;
+    margin-left: inherit;
+    background-color: rgba(189, 189, 189, 0.5);
+}
+
+.newpost_dp{
+    margin-left: 0;
+    /* border: 1px solid green; */
 }
 
 

@@ -19,9 +19,12 @@ from django.contrib import messages
 class PostListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         logged_in_user = request.user
+        pk = logged_in_user.id
+        profile = UserProfile.objects.get(pk=pk)
         posts = Post.objects.filter(
             author__profile__followers__in = [logged_in_user.id]
         )
+        
 
         form = PostForm()
         shared_form = SharedForm
@@ -29,6 +32,7 @@ class PostListView(LoginRequiredMixin, View):
             'post_list': posts,
             'shared_form':shared_form,
             'form': form,
+            'profile': profile,
         }
         return render(request, 'social/post_list.html', context)
 
