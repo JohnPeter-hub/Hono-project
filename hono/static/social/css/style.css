@@ -116,14 +116,15 @@
     text-align: center;
 }
 .sent-message p{
-    background-color: #f3f3f3;
+    background-color: #b1adad;
     border-radius: 30px;
     padding: 10px 25px;
     width:35%;
+    color: black;
 }
 .received-message p{
     background-color: rgb(1,196,255);
-    color:#fff;
+    color:black;
     border-radius: 30px;
     padding: 10px 25px;
     width:35%;

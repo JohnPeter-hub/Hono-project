@@ -4,12 +4,27 @@
 {% block content %}
 <style>
   .margin-left{
-    margin-left: 10%;
+    /* margin-left: 35%; */
+    /* width: max-content; */
+    margin-left: 12%;
   }
+
 </style>
-  <div class="container margin-left">
-      <div class="row">
-          <div class="card col-md-12 mt-5 mb-5 p-3 shadow-sm">
+<script>
+  window.setInterval('refresh()', 5000); 
+  function refresh() {
+        window .location.reload();
+    }
+  function pageScroll() {
+    window.scrollBy(0,100);
+    scrolldelay = setTimeout(pageScroll,0.1);
+}
+
+pageScroll();
+</script>
+  <div class="card container margin-left">
+        <div class="row">
+          <div class="col-md-12 mt-5 mb-5 p-3 shadow-sm" style="border-bottom: 3px solid black;">
               {% if thread.receiver == request.user %}
                 <h5>@{{thread.user}}</h5>
               {%else%}
@@ -27,7 +42,7 @@
       {% for message in message_list %}
         <div class="row">
             {% if message.sender_user == request.user %}
-            <div class="col-md-12 my-1">
+            <div class="col-md-12 offset-7">
                     {% if message.image %}
                       <div>
                           <img src="{{ message.image.url }}" class="message-image">
@@ -40,7 +55,7 @@
                     
             </div>
                 {%elif message.receiver_user == request.user%}
-                <div class="col-md-12 offset-7">
+                <div class="col-md-12 my-1">
                     {% if message.image %}
                       <div class="message-receiver-container ms-auto">
                           <img src="{{ message.image.url }}" class="message-image">
@@ -55,17 +70,20 @@
                 {% endif %}
         </div>
       {% endfor %}
+      
+
       <div class="row">
-          <div class="card col-md-12 p-3 shadow-sm">
-              <form action="{% url 'create-message'  thread.pk %}" method="post" enctype="multipart/form-data" >
-              {% csrf_token %}
-              {{form | crispy}}
-              <div class="d-grid gap-2 mt-3">
-                  <button class="btn btn-light" type="submit">Send Message</button>
-              </div>
-              </form>
-          </div>
-      </div>
+        <div class="col-md-12 p-3 shadow-sm" style="border-top: 3px solid black; height: max-content;">
+            <form action="{% url 'create-message'  thread.pk %}" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            {{form | crispy}}
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-success" type="submit">Send Message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+      
   </div>
 {% endblock content %}<div class="container">
-   
+ 
