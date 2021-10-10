@@ -72,14 +72,15 @@
           {% if not request.user == user %}
           
 
-<!-- 
+
            <form action="" method="post">
               {% csrf_token %}
-              {{form|crispy}}
-              <div class="d-grid gap-2">
-                  <button class="btn btn-success mt-3" type="submit">Message</button>
+              {% for field in form.visible_fields %}
+                 <input type="hidden" id="{{field.id}}" name="username" value="{{profile.user}}" > 
+              {% endfor %}
+              <button class="btn btn-success mt-3" type="submit">Message</button>
               </div>
-            </form> -->
+            </form>
 
 
           {%endif%}
