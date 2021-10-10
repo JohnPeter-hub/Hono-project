@@ -159,7 +159,7 @@ class ProfileView(View):
         followers = profile.followers.all()
         number_of_followers = len(followers)
 
-        # form = ThreadForm()
+        form = ThreadForm()
 
         is_following = False
         for follower in followers :
@@ -173,10 +173,34 @@ class ProfileView(View):
             'posts':posts,
             'no_of_followers':number_of_followers,
             'is_following':is_following,
-            # 'form':form,
+            'form':form,
         }
 
         return render(request,'social/profile.html',context)
+    
+    def post(self,request,*args,**kwargs):
+        form = ThreadForm(request.POST)
+        username=request.POST.get('username')
+        try:
+            receiver=User.objects.get(username=username)
+            if ThreadModel.objects.filter(user=request.user,receiver=receiver).exists():
+                thread = ThreadModel.objects.filter(user=request.user,receiver=receiver)[0]
+                return redirect('thread', pk=thread.pk)
+            elif ThreadModel.objects.filter(user=receiver,receiver=request.user).exists():
+                thread = ThreadModel.objects.filter(user=receiver,receiver=request.user)[0]
+                return redirect('thread', pk=thread.pk)  
+
+            if form.is_valid():
+                thread = ThreadModel(
+                    user=request.user,
+                    receiver=receiver
+                )
+                thread.save()
+
+                return redirect('thread',pk=thread.pk)
+        except:
+            messages.error(request,'Invalid username')
+            return redirect('create-thread')
     
 class ProfileEditView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = UserProfile
