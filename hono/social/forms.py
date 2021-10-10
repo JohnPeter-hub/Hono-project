@@ -41,7 +41,7 @@ class MessageForm(forms.ModelForm):
         label='',
         max_length=1000,
         widget=forms.Textarea(attrs={
-            'rows': '3', 
+            'rows': '1', 
             'placeholder' : 'Type your message',
             'style' : 'resize:none;'
         }))
@@ -68,3 +68,4 @@ class ExploreForm(forms.Form):
             'placeholder': 'Explore Tags'
         })
     )
+

@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import edit
 from .models import MessageModel, Notification, Post,Comment,UserProfile,ThreadModel, Image, Tag
 from .forms import PostForm,CommentForm,ThreadForm,MessageForm,SharedForm, ExploreForm
 from django.views.generic.edit import UpdateView,DeleteView
