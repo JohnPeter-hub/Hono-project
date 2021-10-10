@@ -37,7 +37,14 @@ class ThreadForm(forms.Form):
     username= forms.CharField(label='',max_length=100)
 
 class MessageForm(forms.ModelForm):
-    body = forms.CharField(label='',max_length=1000)
+    body = forms.CharField(
+        label='',
+        max_length=1000,
+        widget=forms.Textarea(attrs={
+            'rows': '3', 
+            'placeholder' : 'Type your message',
+            'style' : 'resize:none;'
+        }))
 
     image = forms.ImageField(required=False)
     class Meta:
