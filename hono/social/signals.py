@@ -8,5 +8,5 @@ def addFollower(sender,instance,created, **Kwargs):
     if created:
         profile = UserProfile.objects.get(user=instance)
         profile.followers.add(instance)
-       
+
 

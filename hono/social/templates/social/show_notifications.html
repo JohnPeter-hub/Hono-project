@@ -36,9 +36,12 @@
 
 </style>
 <span class="dropdown" style="cursor: pointer; padding-top: 10px;">
-    <span class="fa fa-heart font-size-24" onclick="showNotifications()">
+    <span id="noti-icon" class="fa fa-heart font-size-24" onclick="showNotifications()">
         <span style="font-size: 10px;">
             {% if notifications.count > 0%}
+                <script>
+                    document.getElementById('noti-icon').style.color = "#f10c45";
+                </script>
                 {{notifications.count}}
             {%endif%}
         </span>
