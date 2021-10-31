@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
 from os import path
 
@@ -61,14 +61,17 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware'
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ACCOUNT_FORMS = {
 'signup': 'landing.forms.AccountSignupForm',
@@ -144,6 +147,7 @@ USE_TZ = False
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = [path.join(BASE_DIR,'static')]
 STATICFILES_DIRS = [path.join(BASE_DIR,'static')]
 MEDIA_ROOT = path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
@@ -162,3 +166,4 @@ EMAIL_HOST_PASSWORD = 'qgaetclwbmpvfuaq'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAUL_FROM_EMAIL = 'Hono Helpdesk <noreply@honoproject.com>'
+django_heroku.settings(locals())

@@ -1,0 +1,153 @@
+.post-list-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.newpost{
+    height: 323.033px!important;
+    /* position: fixed; */
+    width: 517.75px!important;
+    margin-left: inherit;
+    background-color: rgba(189, 189, 189, 0.5);
+}
+
+.newpost_dp{
+    margin-left: 0;
+    /* border: 1px solid green; */
+}
+
+
+.edit-color{
+    color: #333;
+}
+
+.remove-default-btn{
+    border: none; 
+    background-color: transparent; 
+    box-shadow: none;
+}
+
+.post-link{
+    text-decoration: none;
+}
+
+.post-text{
+    padding-top: 0.5rem;
+    color: black;  
+}
+
+.post-img{
+    float: left;
+    margin-right: 1rem;  
+}
+
+.post-image{
+    
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 300px;
+    width: 400px;
+ 
+}
+
+.child-comment{
+    margin-left: 2rem;
+}
+.notification-badge{
+    transition: 0.3s;
+}
+
+.notification-badge:hover{
+    cursor: pointer;
+    opacity: 0.75;
+    transition: 00.3s;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    position: absolute ;
+    background-color: #f1f1f1;
+    min-width: 350px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font: 0.9rem;
+    
+}
+
+ .dropdown-content a{
+    color: #000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block;
+}
+.dropdown-content a:hover{
+    background-color: #ddd;
+}
+.dropdown-item-parent{
+    position: relative;
+    display: block;
+}
+.dropdowm-item-close{
+    color: rgb(100,25,25);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.inbox-icon-container{
+
+    margin-right:15px ;
+}
+
+.inbox-icon{
+    color:#333;
+    transition:0.5s;
+}
+
+.inbox-icon:hover{
+    transition: 0.5s;
+}
+
+.empty-text{
+    color:#777;
+    font-size:1.5rem;
+    text-align: center;
+}
+.sent-message p{
+    background-color: #b1adad;
+    border-radius: 30px;
+    padding: 10px 25px;
+    width:35%;
+    color: black;
+}
+.received-message p{
+    background-color: rgb(1,196,255);
+    color:black;
+    border-radius: 30px;
+    padding: 10px 25px;
+    width:35%;
+}
+.message-image{
+    border-radius: 10px;
+    max-width:35%;
+    height:auto;
+}
+.message-receiver-container{
+    margin-left: auto;
+    margin-right: 0;
+}
+.inbox-icon{
+    margin-right: 5px;
+}
+.share-btn{
+    cursor: pointer;
+}
+
+.shared-post{
+    margin-left: 30px;
+}
+.body a{
+    text-decoration: none;
+}
