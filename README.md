@@ -6,9 +6,9 @@ Hono is a social networking platform build in Django.
 
 #Instructions to run the final build of Hono  
 🔵 Clone or download the 'final-build' branch.  
-🔵 If you are a Linux user, activate the virtual environment by running the following commands:
+🔵 If you are a Linux user, activate the virtual environment by running the following commands:  
       source hono-venv/bin/activate  
-🔵 If you are a Windows user, activate the virtual environment by running the following commands:
+🔵 If you are a Windows user, activate the virtual environment by running the following commands:  
       hono-venv/bin/activate  
 🔵 Go to the Project directory (hono). There you should see a Python file called manage.py.  
 🔵 Once the virtual environment has been activated, run the following command to run the application:  
