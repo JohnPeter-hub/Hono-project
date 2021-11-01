@@ -2,12 +2,12 @@
 It's a project for university degree
 
 
-Hono is a social networking platform build in Django.
+Hono is a social networking platform build in Django.  
 
-#Instructions to run the final build of Hono
-🔵 Clone or download the 'final-build' branch.
+#Instructions to run the final build of Hono  
+🔵 Clone or download the 'final-build' branch.  
 🔵 If you are a Linux user, activate the virtual environment by running the following commands:
-      source hono-venv/bin/activate
+      source hono-venv/bin/activate  
 🔵 If you are a Windows user, activate the virtual environment by running the following commands:
       hono-venv/bin/activate
 🔵 Go to the Project directory (hono). There you should see a Python file called manage.py.
